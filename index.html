@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Caribe Transfer RD — Traslados aeropuerto–hotel en República Dominicana</title>
+  <meta name="description" content="Traslados privados desde el aeropuerto a tu hotel en Punta Cana, Bávaro, Cap Cana, Bayahíbe y más. Reserva por WhatsApp.">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <link rel="stylesheet" href="assets/css/theme.css">
+</head>
+<body>
+
+<header class="site-header" id="inicio">
+  <div class="topbar">
+    <div class="container topbar-inner">
+      <span data-i18n="topbar_route">Aeropuerto · Hotel · Punta Cana &amp; RD</span>
+      <span class="topbar-right">⏰ <span data-i18n="topbar_clock">Hora local RD</span>: <strong id="localClock">--:--:--</strong></span>
+    </div>
+  </div>
+  <div class="container header-inner">
+    <a href="#inicio" class="brand">
+      <span class="brand-mark">CT</span>
+      <span class="brand-name" data-i18n="brand">Caribe Transfer RD</span>
+    </a>
+
+    <nav class="nav" id="mainNav">
+      <a href="#inicio" data-nav class="active" data-i18n="nav_home">Inicio</a>
+      <a href="#servicios" data-nav data-i18n="nav_services">Servicios</a>
+      <a href="#flota" data-nav data-i18n="nav_fleet">Flota</a>
+      <a href="#zonas" data-nav data-i18n="nav_zones">Zonas</a>
+      <a href="#tarifas" data-nav data-i18n="nav_rates">Tarifas</a>
+      <a href="#como" data-nav data-i18n="nav_how">Cómo funciona</a>
+      <a href="#faq" data-nav data-i18n="nav_faq">Preguntas</a>
+    </nav>
+
+    <button id="menuToggle" class="menu-toggle" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="mainNav">☰</button>
+    <button id="langToggle" class="lang-toggle" type="button" aria-label="Cambiar idioma">EN</button>
+  </div>
+</header>
+
+<main>
+  <!-- HERO + FORMULARIO -->
+  <section class="hero" id="reservar">
+    <div class="car-path" aria-hidden="true">
+      <svg class="car-route" viewBox="0 0 1200 620" preserveAspectRatio="xMidYMid slice" focusable="false">
+        <path id="carLine" d="M -40 520 C 220 430, 420 560, 660 380 S 1010 170, 1250 90"
+              fill="none" stroke="currentColor" stroke-width="2.5"
+              stroke-dasharray="2 14" stroke-linecap="round"/>
+      </svg>
+      <img class="car-runner" id="carRunner" src="assets/img/car.png" alt="" width="38" height="26">
+    </div>
+    <div class="container hero-grid">
+      <div class="hero-copy">
+        <p class="eyebrow" data-i18n="hero_eyebrow">Traslados privados 24/7</p>
+        <h1 data-i18n="hero_title">Tu llegada empieza sin estrés</h1>
+        <p class="lead" data-i18n="hero_lead">
+          Te recogemos en el aeropuerto y te llevamos a tu hotel con conductor profesional,
+          vehículo con aire acondicionado y precio cerrado.
+        </p>
+
+        <ul class="checks">
+          <li data-i18n="hero_check1">Sin sorpresas: precio confirmado antes de viajar</li>
+          <li data-i18n="hero_check2">Seguimiento de vuelo incluido</li>
+          <li data-i18n="hero_check3">Pago al conductor o por adelantado</li>
+        </ul>
+
+        <a class="whatsapp-cta" id="heroWhatsapp" href="#" target="_blank" rel="noopener">
+          <span class="wa-icon">✆</span>
+          <span data-i18n="hero_whatsapp">Escríbenos por WhatsApp</span>
+        </a>
+
+        <div class="hero-badges">
+          <div class="hero-badge"><strong>24/7</strong><span data-i18n="badge1">Recogidas nocturnas</span></div>
+          <div class="hero-badge"><strong>100%</strong><span data-i18n="badge2">Choferes verificados</span></div>
+          <div class="hero-badge"><strong>ES/EN</strong><span data-i18n="badge3">Atención bilingüe</span></div>
+        </div>
+
+        <figure class="hero-photo hero-photo-combo">
+          <img src="assets/img/rd-combo.png" alt="Playa de República Dominicana y mapa del país" loading="lazy">
+          <figcaption data-i18n="hero_photo_caption">Punta Cana · Bávaro · Cap Cana</figcaption>
+        </figure>
+      </div>
+
+      <div class="booking-card">
+        <p class="form-kicker"><span data-i18n="form_kicker">Recogida → Destino</span></p>
+        <h2 data-i18n="form_title">Reserva tu traslado</h2>
+        <form id="bookingForm" novalidate>
+          <div class="trip-toggle trip-top" role="radiogroup" aria-label="Tipo de viaje">
+            <label class="trip-option">
+              <input type="radio" name="trip" value="oneway" checked>
+              <span data-i18n="trip_oneway">Solo ida</span>
+            </label>
+            <label class="trip-option">
+              <input type="radio" name="trip" value="round">
+              <span data-i18n="trip_round">Redondo</span>
+            </label>
+          </div>
+
+          <div class="field-row">
+            <label class="combo">
+              <span>📍 <span data-i18n="label_pickup_q">¿Dónde te recogemos?</span></span>
+              <input type="text" id="pickup" required autocomplete="off" role="combobox" aria-expanded="false"
+                     aria-controls="pickupMenu" aria-autocomplete="list"
+                     placeholder="Aeropuerto, hotel, Airbnb, dirección…" data-i18n-placeholder="pickup_placeholder">
+              <ul class="combo-menu" id="pickupMenu" role="listbox" hidden></ul>
+            </label>
+            <label class="combo">
+              <span>🏨 <span data-i18n="label_drop_q">¿A qué hotel o dirección vas?</span></span>
+              <input type="text" id="drop" required autocomplete="off" role="combobox" aria-expanded="false"
+                     aria-controls="dropMenu" aria-autocomplete="list"
+                     placeholder="Hotel, Airbnb, aeropuerto, dirección…" data-i18n-placeholder="drop_placeholder">
+              <ul class="combo-menu" id="dropMenu" role="listbox" hidden></ul>
+            </label>
+          </div>
+
+          <label>
+            <span>🛫 <span data-i18n="label_flight_full">Número de vuelo y aerolínea</span></span>
+            <input type="text" id="flight" placeholder="Ej. AA1234 · American Airlines" data-i18n-placeholder="flight_placeholder" autocomplete="off">
+          </label>
+
+          <div class="field-row">
+            <label>
+              <span>📅 <span data-i18n="label_date">Fecha</span></span>
+              <input type="date" id="date" required>
+            </label>
+            <label>
+              <span>🕐 <span data-i18n="label_time">Hora</span></span>
+              <input type="time" id="time" required>
+            </label>
+          </div>
+
+          <div class="field-row round-fields" id="returnFields" hidden>
+            <label>
+              <span>📅 <span data-i18n="label_return_date">Fecha de regreso</span></span>
+              <input type="date" id="returnDate">
+            </label>
+            <label>
+              <span>🕐 <span data-i18n="label_return_time">Hora de regreso</span></span>
+              <input type="time" id="returnTime">
+            </label>
+          </div>
+
+          <div class="field-row">
+            <label>
+              <span>👥 <span data-i18n="label_pax">Pasajeros</span></span>
+              <input type="number" id="adults" min="1" max="14" value="2" required>
+            </label>
+            <label>
+              <span>🧳 <span data-i18n="label_luggage">Piezas de equipaje</span></span>
+              <input type="number" id="luggage" min="0" max="20" value="2">
+            </label>
+          </div>
+
+          <label>
+            <span>🚘 <span data-i18n="label_vehicle">Tipo de vehículo</span></span>
+            <select id="vehicle" required></select>
+          </label>
+
+          <div class="field-row">
+            <label>
+              <span data-i18n="label_name">Nombre</span>
+              <input type="text" id="name" autocomplete="name">
+            </label>
+            <label>
+              <span>📱 <span data-i18n="label_phone">Teléfono / WhatsApp</span></span>
+              <input type="tel" id="phone" required autocomplete="tel" placeholder="+1 809 000 0000">
+            </label>
+          </div>
+          
+          <label>
+            <span>💳 <span data-i18n="label_pay">Forma de pago</span></span>
+            <select id="payMethod" required></select>
+          </label>
+          <p class="hint" data-i18n="pay_hint">El pago en línea (PayPal / TPV) se activará próximamente. Hoy confirmamos por WhatsApp.</p>
+
+
+          <p class="hint" id="capacityHint"></p>
+
+          <div class="price-box">
+            <span data-i18n="price_label">Precio estimado</span>
+            <strong id="price">—</strong>
+          </div>
+
+          <button type="submit" class="btn btn-block" data-i18n="form_submit">Enviar reserva por WhatsApp</button>
+          <p class="form-note" data-i18n="form_note">
+            Al enviar, se abrirá WhatsApp con tu reserva ya redactada para confirmar con un agente.
+          </p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONFIANZA -->
+  <section class="strip">
+    <div class="container strip-grid">
+      <div><strong data-i18n="strip1_title">Precio cerrado</strong><span data-i18n="strip1_text">Sin cargos ocultos al llegar</span></div>
+      <div><strong data-i18n="strip2_title">Conductores locales</strong><span data-i18n="strip2_text">Conocen cada hotel y acceso</span></div>
+      <div><strong data-i18n="strip3_title">Atención 24/7</strong><span data-i18n="strip3_text">Respondemos por WhatsApp</span></div>
+    </div>
+  </section>
+
+  <!-- SERVICIOS -->
+  <section class="section" id="servicios">
+    <div class="container">
+      <h2 data-i18n="services_title">Servicios</h2>
+      <p class="section-sub" data-i18n="services_sub">Un solo número de WhatsApp para moverte por toda la isla.</p>
+      <div class="cards-grid">
+        <article class="card">
+          <div class="card-icon">✈️</div>
+          <h3 data-i18n="srv1_title">Aeropuerto → Hotel</h3>
+          <p data-i18n="srv1_text">Monitoreamos tu vuelo y ajustamos la recogida si llega antes o con retraso.</p>
+        </article>
+        <article class="card">
+          <div class="card-icon">🏨</div>
+          <h3 data-i18n="srv2_title">Hotel → Aeropuerto</h3>
+          <p data-i18n="srv2_text">Salida calculada con margen para chequeo y seguridad, sin apuros de último minuto.</p>
+        </article>
+        <article class="card">
+          <div class="card-icon">🚘</div>
+          <h3 data-i18n="srv3_title">Alquiler de vehículos</h3>
+          <p data-i18n="srv3_text">Sedán, SUV o van por día o por semana, con o sin chofer.</p>
+        </article>
+        <article class="card">
+          <div class="card-icon">🗺️</div>
+          <h3 data-i18n="srv4_title">Punto a punto</h3>
+          <p data-i18n="srv4_text">Excursiones, puertos y traslados entre ciudades y zonas turísticas.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- FLOTA -->
+  <section class="section alt" id="flota">
+    <div class="container">
+      <h2 data-i18n="fleet_title">Flota</h2>
+      <p class="section-sub" data-i18n="fleet_sub">Un vehículo para cada grupo.</p>
+      <div class="cards-grid">
+        <article class="card">
+          <div class="card-icon">🚗</div>
+          <h3 data-i18n="fleet1_title">Sedán · 1–3 pasajeros</h3>
+          <p data-i18n="fleet1_text">Ideal para parejas o viajeros solos. Hasta 3 piezas de equipaje, A/C y agua de cortesía.</p>
+        </article>
+        <article class="card">
+          <div class="card-icon">🚙</div>
+          <h3 data-i18n="fleet2_title">SUV / Camioneta · 4–6 pasajeros</h3>
+          <p data-i18n="fleet2_text">Familias y grupos pequeños. Espacio ampliado y sillas para bebé bajo solicitud.</p>
+        </article>
+        <article class="card">
+          <div class="card-icon">🚐</div>
+          <h3 data-i18n="fleet3_title">Van / Minibús · 7–14 pasajeros</h3>
+          <p data-i18n="fleet3_text">Grupos, bodas y eventos. Ideal para excursiones, chofer bilingüe disponible.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ZONAS -->
+  <section class="section" id="zonas">
+    <div class="container">
+      <h2 data-i18n="zones_title">Zonas donde operamos</h2>
+      <p class="section-sub" data-i18n="zones_sub">Cobertura en toda la República Dominicana.</p>
+      <div class="zone-chips">
+        <span>Punta Cana</span><span>Bávaro</span><span>Cap Cana</span><span>Uvero Alto</span>
+        <span>Bayahíbe</span><span>La Romana</span><span>Santo Domingo</span><span>Samaná</span>
+        <span>Puerto Plata</span><span>Santiago</span>
+      </div>
+      <p class="cta-row">
+        <a class="btn" id="zonesWhatsapp" href="#" target="_blank" rel="noopener" data-i18n="zones_cta">Reservar directo por WhatsApp</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- TARIFAS -->
+  <section class="section" id="tarifas">
+    <div class="container">
+      <h2 data-i18n="rates_title">Tarifas por destino</h2>
+      <p class="section-sub" data-i18n="rates_sub">
+        Precios de ida en USD desde el aeropuerto seleccionado. Ida y vuelta tiene descuento.
+      </p>
+
+      <div class="table-wrap">
+        <table class="rates-table" id="ratesTable">
+          <thead>
+            <tr>
+              <th data-i18n="rates_destination">Destino</th>
+              <th data-i18n="rates_sedan">Sedán</th>
+              <th data-i18n="rates_van">Van</th>
+              <th data-i18n="rates_minibus">Minibús</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <p class="fine-print" data-i18n="rates_note">
+        Tarifas de referencia. La reserva se confirma por WhatsApp según fecha, hotel y número de pasajeros.
+      </p>
+    </div>
+  </section>
+
+  <!-- CÓMO FUNCIONA -->
+  <section class="section alt" id="como">
+    <div class="container">
+      <h2 data-i18n="how_title">Cómo funciona</h2>
+      <div class="steps">
+        <article>
+          <span class="step-num">1</span>
+          <h3 data-i18n="how1_title">Elige tu ruta</h3>
+          <p data-i18n="how1_text">Aeropuerto, destino, fecha y número de pasajeros.</p>
+        </article>
+        <article>
+          <span class="step-num">2</span>
+          <h3 data-i18n="how2_title">Confirma por WhatsApp</h3>
+          <p data-i18n="how2_text">Te respondemos con el precio final y los datos del conductor.</p>
+        </article>
+        <article>
+          <span class="step-num">3</span>
+          <h3 data-i18n="how3_title">Llega y viaja</h3>
+          <p data-i18n="how3_text">El conductor te espera con tu nombre en la salida del aeropuerto.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section" id="faq">
+    <div class="container narrow">
+      <h2 data-i18n="faq_title">Preguntas frecuentes</h2>
+
+      <details>
+        <summary data-i18n="faq1_q">¿Qué pasa si mi vuelo se retrasa?</summary>
+        <p data-i18n="faq1_a">Seguimos el número de vuelo y ajustamos la hora de recogida sin costo.</p>
+      </details>
+      <details>
+        <summary data-i18n="faq2_q">¿Cómo pago?</summary>
+        <p data-i18n="faq2_a">Puedes pagar al conductor en efectivo o por adelantado; lo acordamos por WhatsApp.</p>
+      </details>
+      <details>
+        <summary data-i18n="faq3_q">¿Incluye sillas para niños?</summary>
+        <p data-i18n="faq3_a">Sí, indícalo en las notas de la reserva y llevamos silla sin costo.</p>
+      </details>
+      <details>
+        <summary data-i18n="faq4_q">¿Puedo cancelar?</summary>
+        <p data-i18n="faq4_a">Cancelación sin cargo avisando con al menos 24 horas de anticipación.</p>
+      </details>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div>
+      <strong data-i18n="brand">Caribe Transfer RD</strong>
+      <p data-i18n="footer_text">Traslados privados en República Dominicana.</p>
+    </div>
+    <div>
+      <a id="footerWhatsapp" href="#" target="_blank" rel="noopener" data-i18n="footer_whatsapp">WhatsApp</a>
+      <a id="footerEmail" href="#" data-i18n="footer_email">Correo</a>
+    </div>
+  </div>
+  <div class="container copyright">
+    <span>© <span id="year"></span> Caribe Transfer RD</span>
+  </div>
+</footer>
+
+<a class="to-top" id="toTop" href="#reservar" aria-label="Volver a la reserva">↑</a>
+
+<a class="float-wa" id="floatWhatsapp" href="#" target="_blank" rel="noopener" aria-label="WhatsApp">✆</a>
+
+<script src="assets/js/config.js"></script>
+<script src="assets/js/app.js"></script>
+</body>
+</html>

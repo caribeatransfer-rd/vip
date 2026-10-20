@@ -1,0 +1,118 @@
+/* ============================================================
+   TEMA — Caribbean Premium
+   Verde petróleo + coral + arena
+   ============================================================ */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@600;700;800&display=swap');
+
+:root {
+  --ink: #0b2b33;
+  --muted: #4a6572;
+  --teal: #0f4c5c;
+  --teal-dark: #0a3a47;
+  --coral: #ff6b4a;
+  --sand: #f3e9dc;
+  --line: #e4d9c9;
+}
+
+body { font-family: "Inter", "Segoe UI", system-ui, sans-serif; }
+
+h1, h2, h3, .brand-name, .price-box strong {
+  font-family: "Sora", "Segoe UI", system-ui, sans-serif;
+}
+
+.hero {
+  background:
+    radial-gradient(1100px 500px at 85% -10%, rgba(15, 76, 92, .20), transparent 60%),
+    radial-gradient(800px 420px at 0% 100%, rgba(255, 107, 74, .14), transparent 60%),
+    linear-gradient(180deg, #eaf4f4 0%, #ffffff 70%);
+}
+
+.brand-mark {
+  background: linear-gradient(135deg, #0f4c5c, #14707f);
+}
+
+.btn {
+  background: var(--coral);
+  color: #fff;
+  box-shadow: 0 10px 24px rgba(255, 107, 74, .28);
+}
+
+.btn:hover { background: #e85535; }
+
+.nav a.btn, .nav a.btn:hover { color: #fff; }
+
+.eyebrow {
+  background: rgba(15, 76, 92, .10);
+  color: #0f4c5c;
+}
+
+.checks li::before { background: var(--teal); }
+
+.price-box strong { color: var(--teal); }
+
+.step-num { background: var(--coral); }
+
+.strip { background: #0b2b33; }
+
+.rates-table th { background: var(--sand); }
+
+.site-footer { background: #0b2b33; }
+
+.float-wa { background: #25d366; }
+
+.whatsapp-cta { background: #25d366; }
+
+/* ============================================================
+   REPARTO CROMÁTICO (psicología del color) — solo distribuye
+   los mismos colores existentes:
+   • Petróleo/teal  → confianza, calma, mar (nav, precios, hovers)
+   • Coral          → energía, acción, conversión (CTAs, acentos)
+   • Arena          → calidez, hogar (fondos cálidos, tarifas)
+   • Verde WhatsApp → solo contacto (WhatsApp)
+   • Tinta oscura   → autoridad (topbar, strip, footer)
+   ============================================================ */
+
+/* Arena: ritmo cálido en secciones alternas (acogedor, no clínico) */
+.section.alt {
+  background: linear-gradient(180deg, #faf5ee 0%, #ffffff 100%);
+}
+
+/* Barra de acento coral → teal bajo cada título (acción que conduce a confianza) */
+.section h2 { position: relative; padding-bottom: 14px; }
+
+.section h2::after {
+  content: "";
+  display: block;
+  width: 56px;
+  height: 4px;
+  border-radius: 999px;
+  margin-top: 10px;
+  background: linear-gradient(90deg, var(--coral), var(--teal));
+}
+
+/* Cards: hover teal = sensación de seguridad/elección correcta */
+.card { transition: border-color .2s, transform .2s, box-shadow .2s; }
+
+.card:hover {
+  border-color: var(--teal);
+  transform: translateY(-2px);
+  box-shadow: 0 14px 30px rgba(15, 76, 92, .12);
+}
+
+/* Tarifas: cabecera en arena (calidez) y precio en teal (confianza) */
+.rates-table td { font-variant-numeric: tabular-nums; }
+
+/* FAQ: apertura en teal = respuesta tranquila */
+details { transition: border-color .2s; }
+details[open] { border-color: var(--teal); }
+details summary:hover { color: var(--teal-dark); }
+
+/* Chips de zona: hover coral = toque cálido de acción */
+.zone-chips span { transition: border-color .2s, color .2s; }
+.zone-chips span:hover { border-color: var(--coral); color: var(--coral); }
+
+/* Caja de precio: borde teal (confianza en el número que decide) */
+.price-box { border-color: rgba(15, 76, 92, .35); }
+
+/* Insignias del hero: número en teal sólido (autoridad serena) */
+.hero-badge strong { color: var(--teal); }
